@@ -1,0 +1,19 @@
+{
+  "name": "gabiko-attnd",
+  "version": "0.0.0",
+  "author": "Koen Bollen <meneer@koenbollen.nl>",
+  "private": true,
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "async": "~0.2.9",
+    "redis": "~0.10.0",
+    "hiredis": "~0.1.16",
+    "nodemailer": "~0.6.0",
+    "connect": "~2.12.0",
+    "jade": "~1.1.4",
+    "base58-native": "~0.1.3"
+  }
+}
