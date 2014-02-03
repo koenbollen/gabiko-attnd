@@ -4,7 +4,7 @@ var config = module.exports = {
   // Must override in localconfig.js, mail will link here.
   baseurl: 'http://localhost:3000',
 
-  
+
   // Must override in localconfig.js, domain must resolv..
   from: 'The Gabiko Initiative <initiative@localhost',
 
@@ -12,7 +12,7 @@ var config = module.exports = {
   // Must override in localconfig.js, add people to list.
   people: [
     {
-      name: 'Kaji',
+      name: 'Kaji Test',
       mail: 'test@koenbollen.nl',
     },
     /*/
@@ -34,7 +34,7 @@ var config = module.exports = {
 
   tokenLength: 16, // bytes
 
-  inviteDelta: 3600 * 24 * 7 * 1000 * 2, //ms
+  inviteDelta: 3600 * 24 * 7 * 1000, //ms
 
   template: 'views/invite.jade',
 

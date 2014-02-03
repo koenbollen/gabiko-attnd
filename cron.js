@@ -53,7 +53,7 @@ exports.iterate = function iterate(db) {
           var expire = config.inviteDelta * 2 / 1000; // expire in two weeks (was in ms, need sec)
 
           db.multi()
-            .hmset(person.key, 
+            .hmset(person.key,
               'invited', now.getTime(),
               'name', person.name,
               'email', person.mail,
@@ -61,9 +61,9 @@ exports.iterate = function iterate(db) {
               'time', now.getTime(),
               'image_token', person['image_token'],
               'image_time', 0,
-              'ackknowledge', tokens.ackknowledge, 
-              'reject', tokens.reject, 
-              'maybe', tokens.maybe, 
+              'ackknowledge', tokens.ackknowledge,
+              'reject', tokens.reject,
+              'maybe', tokens.maybe,
               'plus', tokens.plus)
             .expire(person.key, expire)
             .setex('gabiko:token:'+tokens.ackknowledge, expire, person.hash)
@@ -72,14 +72,13 @@ exports.iterate = function iterate(db) {
             .setex('gabiko:token:'+tokens.plus, expire, person.hash)
             .setex('gabiko:image:'+person['image_token'], expire, person.hash)
             .exec(function(err, results) {
-              if(err) throw err;
-
               mail.send_invite(person, renderer, function(err, result) {
                 if(err) {
+                  console.error(err, person);
                   db.del(person.key, console.error);
-                  throw err;
+                } else {
+                  console.log( 'sent', person.mail );
                 }
-                //console.log( 'sent', person.mail );
               });
             });
         }
