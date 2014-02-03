@@ -26,6 +26,29 @@ app.get('/', function(req, res) {
   });
 });
 
+app.get('/:image.png', function(req, res) {
+  var image = req.params.image;
+  db.get('gabiko:image:'+image, function(err, hash) {
+    if(err) throw err;
+    if(!hash) {
+      return res.status(404).send('Not Found\n');
+    }
+    var next = utils.nextEvent();
+    var nextkey = strftime('%Y%m%d', next);
+
+    var key = 'gabiko:'+nextkey+':'+hash;
+    db.hset(key, 'image_time', (new Date()).getTime(), function(err, _) { if(err) throw err; });
+
+    var stat = fs.statSync('./public/gabiko.png');
+    res.writeHead(200, { 
+      'Content-Type': 'image/png',
+      'Content-Length': stat.size
+    });
+    var stream = fs.createReadStream('./public/gabiko.png');
+    stream.pipe(res);
+  });
+});
+
 app.get('/:token', function(req, res) {
   var token = req.params.token;
   db.get('gabiko:token:'+token, function(err, hash) {

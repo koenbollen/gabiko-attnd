@@ -48,6 +48,7 @@ exports.iterate = function iterate(db) {
           };
 
           person['tokens'] = tokens;
+          person['image_token'] = generateId(config.tokenLength*.5);
 
           var expire = config.inviteDelta * 2 / 1000; // expire in two weeks (was in ms, need sec)
 
@@ -58,6 +59,8 @@ exports.iterate = function iterate(db) {
               'email', person.mail,
               'state', 'invited',
               'time', now.getTime(),
+              'image_token', person['image_token'],
+              'image_time', 0,
               'ackknowledge', tokens.ackknowledge, 
               'reject', tokens.reject, 
               'maybe', tokens.maybe, 
@@ -67,6 +70,7 @@ exports.iterate = function iterate(db) {
             .setex('gabiko:token:'+tokens.reject, expire, person.hash)
             .setex('gabiko:token:'+tokens.maybe, expire, person.hash)
             .setex('gabiko:token:'+tokens.plus, expire, person.hash)
+            .setex('gabiko:image:'+person['image_token'], expire, person.hash)
             .exec(function(err, results) {
               if(err) throw err;
 

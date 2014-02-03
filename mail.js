@@ -19,7 +19,7 @@ function send_invite( info, renderer, callback ) {
   var transport = config.mail_transport(nodemailer);
   transport.sendMail({
     from: config.from,
-    to: info.codename + ' <' + info.mail + '>',
+    to: info.name + ' <' + info.mail + '>',
     subject: 'Gabiko ⧯ Invite: '+info.targetStr,
     html: body,
     text: 'get a new e-mail client...',

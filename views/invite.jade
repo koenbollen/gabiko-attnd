@@ -1,18 +1,46 @@
-h1 #{name},
 
-h3 Misson: #{targetStr}
+- var buttonStyle = 'display: inline-block; color: #212a2c; font-weight: bold; font-size: 16pt; width: 200px; text-align: center; line-height: 3em; margin: 10px;'
 
-p You've been invited to join the next top secret Gabiko gathering. Join us in epic day of gaming!
+h1 &nbsp;&nbsp;&nbsp;#{name},
 
-a(href="#{baseurl}/#{tokens.ackknowledge}")#ackknowledge.button I'll be there!
-a(href="#{baseurl}/#{tokens.reject}")#reject.button No.
-a(href="#{baseurl}/#{tokens.plus}")#plus.button Yes! +1
-a(href="#{baseurl}/#{tokens.maybe}")#maybe.button Maybe..
+h2 Misson: <i>#{targetStr}</i>
 
-p Bring drinks, foodz and beer!
+p(style="width:40em").
+  You've been invited to join the next top secret Gabiko gathering. Join us in epic day of gaming!
+
+table(style="margin:15px 0px 30px 0px;")
+  tr
+    td: a(href="#{baseurl}/#{tokens.ackknowledge}",style="background:green;#{buttonStyle}") I'll be there!
+    td: a(href="#{baseurl}/#{tokens.reject}",style="background:red;#{buttonStyle}") No.
+  tr
+    td: a(href="#{baseurl}/#{tokens.plus}",style="background:yellow;#{buttonStyle}") Yes! +1
+    td: a(href="#{baseurl}/#{tokens.maybe}",style="background:orange;#{buttonStyle}") Maybe..
+  tr
+    td(colspan=2,style="text-align:center;font-size:10px") just click to let me know
+
+p(style="width:40em;text-align:justify").
+  Voor de duidelijkheid, ik verwacht niet dat iedereen moeilijk doet om tijd te maken voor deze
+  dagen. Jullie zijn welkom en als je toevallig kan en zin hebt kom je gamen! Sterker nog,
+  als iedereen hier komt hebben we een probleem met stoelen en glazen.
+
+p(style="width:40em;text-align:justify").
+  Het is dus de bedoeling dat iedereen wat lekkers of wat drinken meeneemt. We moeten even
+  aankijken hoe dat gaat lopen (dat niet iedereen een fles cola meeneemt (en nee, niet nu
+  express een fles cola meenemen...)).<br>
+  Ik zorg voor koffie, thee en limonade.
+
+hr
 
 dl
-  dt Location:
-  dd: a(href="https://goo.gl/maps/Ga3pl") 52.3344316, 5.2200368
-  dt unscibscribe:
-  dd: a(href="http://xkcd.com/no") click here
+  dt(style="font-weight:bold") Date:
+  dd= targetStr
+  dt(style="font-weight:bold") Time:
+  dd 11:00 AM (UTC+0100)
+  dt(style="font-weight:bold") Location:
+  dd: a(href="https://goo.gl/maps/Ga3pl",style="color: #212a2c") 52.3344316, 5.2200368 (34)
+  dt(style="font-weight:bold") Unscibscribe:
+  dd: a(href="http://xkcd.com/no",style="color: #212a2c") click here
+
+hr
+
+img(src="#{baseurl}/#{image_token}.png",title="tracking_pixel",alt="tracking_pixel")
